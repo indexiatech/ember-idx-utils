@@ -1,0 +1,130 @@
+{
+    "project": {
+        "name": "Ember Utils",
+        "description": "A set of utilities for Ember.js",
+        "version": "0.0.1",
+        "url": "http://www.github.com/indexiatech/ember-utils/apidocs"
+    },
+    "files": {
+        "lib/hotkeys_bindings_mixin.coffee": {
+            "name": "lib/hotkeys_bindings_mixin.coffee",
+            "modules": {},
+            "classes": {
+                "HotkeysMixin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/style_bindings_mixin.coffee": {
+            "name": "lib/style_bindings_mixin.coffee",
+            "modules": {},
+            "classes": {
+                "StyleBindingsMixin": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "HotkeysMixin": {
+            "name": "HotkeysMixin",
+            "shortname": "HotkeysMixin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/hotkeys_bindings_mixin.coffee",
+            "line": 5,
+            "description": "A mixin to enhance an `Ember.View` with hotkey support.\n\nTo use, inherit this mixin in your view:\n\n```javascript\nMyView = Em.View.extend(HotkeysMixin, {\n  hotkeysBindings: ['ctrl-a']\n\n  actions: {\n      'ctrl-a': function() {\n          console.log(\"Ctrl-a was pressed!\");\n      }\n  }\n});\n```",
+            "access": "public",
+            "tagname": ""
+        },
+        "StyleBindingsMixin": {
+            "name": "StyleBindingsMixin",
+            "shortname": "StyleBindingsMixin",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 5,
+            "description": "Provides styleBindings property to bind style \nproperties based on object properties.",
+            "access": "public",
+            "tagname": ""
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/hotkeys_bindings_mixin.coffee",
+            "line": 26,
+            "description": "Add `hotkeysBindings` property as a `concatenatedProperties`.",
+            "itemtype": "property",
+            "name": "concatenatedProperties",
+            "type": "array",
+            "class": "HotkeysMixin"
+        },
+        {
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 13,
+            "description": "Add `styleBindings` property as a `concatenatedProperties`.",
+            "itemtype": "property",
+            "name": "concatenatedProperties",
+            "type": "array",
+            "class": "StyleBindingsMixin"
+        },
+        {
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 20,
+            "description": "Apply the `style` attribute to the DOM element.",
+            "itemtype": "property",
+            "name": "attributeBindings",
+            "type": "array",
+            "class": "StyleBindingsMixin"
+        },
+        {
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 27,
+            "description": "The default unit for numbered value.",
+            "itemtype": "property",
+            "name": "unit",
+            "type": "string",
+            "class": "StyleBindingsMixin"
+        },
+        {
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 34,
+            "description": "Build a style property and its value as a string.",
+            "itemtype": "method",
+            "name": "buildStyleString",
+            "params": [
+                {
+                    "name": "style",
+                    "description": "property name",
+                    "type": "String"
+                },
+                {
+                    "name": "property",
+                    "description": "name in the current object that should be resolved as the\nvalue of the style property.",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "StyleBindingsMixin"
+        },
+        {
+            "file": "lib/style_bindings_mixin.coffee",
+            "line": 48,
+            "description": "Apply the style bindings during the view `init` phase.\n\nThis method assumes that the attribute `styleBindings` is defined as an array of strings where\neach string is a property name that should be resolved as a style option.",
+            "itemtype": "method",
+            "name": "applyBindings",
+            "access": "private",
+            "tagname": "",
+            "class": "StyleBindingsMixin"
+        }
+    ],
+    "warnings": []
+}

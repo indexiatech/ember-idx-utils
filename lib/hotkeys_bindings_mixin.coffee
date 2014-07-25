@@ -20,6 +20,7 @@
 # ```
 #
 # @class HotkeysMixin
+# @public
 ###
 HotkeysMixin = Mixin.create
     ###*

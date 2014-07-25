@@ -5,7 +5,9 @@
 ###*
 # Provides styleBindings property to bind style 
 # properties based on object properties.
+#
 # @class StyleBindingsMixin
+# @public
 ###
 StyleBindingsMixin = Mixin.create
     ###*
@@ -24,6 +26,8 @@ StyleBindingsMixin = Mixin.create
 
     ###*
     # The default unit for numbered value.
+    # @property unit
+    # @type string
     ###
     unit: 'px'
 

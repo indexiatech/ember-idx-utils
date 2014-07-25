@@ -4,7 +4,7 @@
     "description": "A set of utilities for Ember.js",
     "homepage": "http://www.github.com/indexiatech/ember-utils",
     "authors": [
-        "Asaf Shakarchi <asaf000@gmail.com>"
+        "Asaf Shakarchi <asaf@indexia.co>"
     ],
     "license": "ASF 2.0",
     "ignore": [

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/hotkeys_bindings_mixin.coffee - Ember Utils</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Ember Utils"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/HotkeysMixin.html">HotkeysMixin</a></li>
+            
+                <li><a href="../classes/StyleBindingsMixin.html">StyleBindingsMixin</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/hotkeys_bindings_mixin.coffee</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+#(c) 2014 Indexia, Inc.
+
+&#x60;import {Mixin, debug} from &#x27;ember&#x27;;&#x60;
+
+###*
+# A mixin to enhance an &#x60;Ember.View&#x60; with hotkey support.
+# 
+# To use, inherit this mixin in your view:
+#
+# &#x60;&#x60;&#x60;javascript
+# MyView = Em.View.extend(HotkeysMixin, {
+#   hotkeysBindings: [&#x27;ctrl-a&#x27;]
+#
+#   actions: {
+#       &#x27;ctrl-a&#x27;: function() {
+#           console.log(&quot;Ctrl-a was pressed!&quot;);
+#       }
+#   }
+# });
+# &#x60;&#x60;&#x60;
+#
+# @class HotkeysMixin
+# @public
+###
+HotkeysMixin = Mixin.create
+    ###*
+    # Add &#x60;hotkeysBindings&#x60; property as a &#x60;concatenatedProperties&#x60;.
+    # @property concatenatedProperties
+    # @type array
+    ###
+    concatenatedProperties: [&#x27;hotkeysBindings&#x27;]
+
+    keyMap: {
+        8: &quot;backspace&quot;, 9: &quot;tab&quot;, 13: &quot;return&quot;, 16: &quot;shift&quot;, 17: &quot;ctrl&quot;, 18: &quot;alt&quot;, 224: &quot;meta&quot;,
+        112: &quot;f1&quot;, 113: &quot;f2&quot;, 114: &quot;f3&quot;, 115: &quot;f4&quot;, 116: &quot;f5&quot;, 117: &quot;f6&quot;, 118: &quot;f7&quot;, 119: &quot;f8&quot;, 120: &quot;f9&quot;, 121: &quot;f10&quot;, 122: &quot;f11&quot;, 123: &quot;f12&quot;
+    }
+
+    keyPressHandler: (e) -&gt;
+        command = &quot;&quot;
+
+        if e.ctrlKey
+            command += &quot;ctrl+&quot;
+
+        if e.altKey
+            command += &quot;alt+&quot;
+
+        if e.shiftKey
+            command += &quot;shift+&quot;
+
+        if e.metaKey
+            command += &quot;meta+&quot;
+
+        if @keyMap[e.which] then command += @keyMap[e.which] else command += String.fromCharCode(e.which).toLowerCase()
+  
+        debug &quot;hotkey command: #{command}&quot;
+        @send command
+        
+
+    keyDown: (e) -&gt;
+        @keyPressHandler e
+
+    keyUp: (e) -&gt;
+        @keyPressHandler e
+
+    keyPress: (e) -&gt;
+        @keyPressHandler e
+
+&#x60;export default HotkeysMixin;&#x60;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

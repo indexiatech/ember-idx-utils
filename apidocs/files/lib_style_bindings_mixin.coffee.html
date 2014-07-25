@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/style_bindings_mixin.coffee - Ember Utils</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Ember Utils"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/HotkeysMixin.html">HotkeysMixin</a></li>
+            
+                <li><a href="../classes/StyleBindingsMixin.html">StyleBindingsMixin</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/style_bindings_mixin.coffee</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+#(c) 2014 Indexia, Inc.
+
+&#x60;import {Mixin} from &#x27;ember&#x27;;&#x60;
+
+###*
+# Provides styleBindings property to bind style 
+# properties based on object properties.
+#
+# @class StyleBindingsMixin
+# @public
+###
+StyleBindingsMixin = Mixin.create
+    ###*
+    # Add &#x60;styleBindings&#x60; property as a &#x60;concatenatedProperties&#x60;.
+    # @property concatenatedProperties
+    # @type array
+    ###
+    concatenatedProperties: [&#x27;styleBindings&#x27;]
+
+    ###*
+    # Apply the &#x60;style&#x60; attribute to the DOM element.
+    # @property attributeBindings
+    # @type array
+    ####
+    attributeBindings: [&#x27;style&#x27;]
+
+    ###*
+    # The default unit for numbered value.
+    # @property unit
+    # @type string
+    ###
+    unit: &#x27;px&#x27;
+
+    ###*
+    # Build a style property and its value as a string.
+    # @method buildStyleString
+    # @param {String} style property name
+    # @param {String} property name in the current object that should be resolved as the
+    # value of the style property.
+    # @private
+    ###
+    buildStyleString: (styleName, property) -&gt;
+        value = @get(property)
+        return if value is undefined
+        value = value + @get(&quot;unit&quot;) if Ember.typeOf(value) is &quot;number&quot;
+        styleName + &quot;:&quot; + value + &quot;;&quot;
+
+    ###*
+    # Apply the style bindings during the view &#x60;init&#x60; phase.
+    #
+    # This method assumes that the attribute &#x60;styleBindings&#x60; is defined as an array of strings where
+    # each string is a property name that should be resolved as a style option.
+    #
+    # @method applyBindings
+    # @private
+    ###
+    applyBindings: (-&gt;
+        return unless styleBindingsstyleBindings = @styleBindings
+        lookup = {}
+        @styleBindings.forEach (binding) -&gt;
+            propArr = binding.split(&quot;:&quot;)
+            property = propArr[0]
+            style = propArr[1]
+            lookup[style or property] = property
+        styles = Em.keys(lookup)
+        properties = styles.map((style) -&gt;
+            lookup[style]
+        )
+        styleComputed = Em.computed(-&gt;
+            styleTokens = styles.map((style) =&gt;
+                @buildStyleString style, lookup[style]
+            )
+            styleString = styleTokens.join(&quot;&quot;)
+            styleString  if styleString.length isnt 0
+        )
+        styleComputed.property.apply styleComputed, properties
+        Em.defineProperty @, &quot;style&quot;, styleComputed
+    ).on &#x27;init&#x27;
+
+&#x60;export default StyleBindingsMixin&#x60;
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
