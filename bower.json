@@ -1,0 +1,26 @@
+{
+    "name": "ember-utils",
+    "version": "0.1.0",
+    "description": "A set of utilities for Ember.js",
+    "homepage": "http://www.github.com/indexiatech/ember-utils",
+    "authors": [
+        "Asaf Shakarchi <asaf000@gmail.com>"
+    ],
+    "license": "ASF 2.0",
+    "ignore": [
+        "bower_components",
+        "examples",
+        "node_modules",
+        "test",
+        "tmp",
+        "**/.*",
+        "Brocfile.js",
+        "karma.conf.js",
+        "package.json",
+        "testem.json"
+    ],
+    "devDependencies": {
+        "ember": "^1.5.1",
+        "ember-qunit": "0.1.5"
+    }
+}
