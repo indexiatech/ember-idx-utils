@@ -1,7 +1,0 @@
-#!/bin/sh
-echo "# Executing test script"
-scripts/build
-node_modules/.bin/bower install
-node_modules/.bin/testem ci -l chrome
-
-

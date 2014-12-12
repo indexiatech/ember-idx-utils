@@ -1,4 +1,0 @@
-#!/bin/sh
-echo "# Executing build script"
-rm -rf dist
-broccoli build dist

@@ -1,35 +1,21 @@
-//#(c) 2014 Indexia, Inc.
+/* jshint node: true */
+/* global require, module */
 
-var findBowerTrees = require('broccoli-bower');
-var filterCoffeeScript = require('broccoli-coffee');
-var filterTemplates = require('broccoli-template');
-var mergeTrees = require('broccoli-merge-trees');
-var makeModule = require('broccoli-dist-es6-module');
-var pickFiles = require('broccoli-static-compiler');
+var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-var app = 'lib';
+var app = new EmberAddon();
 
-function preprocess (tree) {
-  tree = filterTemplates(tree, {
-    extensions: ['hbs', 'handlebars'],
-    compileFunction: 'Ember.Handlebars.compile'
-  })
-  tree = filterCoffeeScript(tree, {
-    bare: true
-  })
-  return tree
-}
+// Use `app.import` to add additional libraries to the generated
+// output files.
+//
+// If you need to use different assets in different
+// environments, specify an object as the first parameter. That
+// object's keys should be the environment name and the values
+// should be the asset to use in that environment.
+//
+// If the library that you are including contains AMD or ES6
+// modules that you would like to import into your application
+// please specify an object with the list of modules as keys
+// along with the exports of each module as its value.
 
-app = preprocess(app)
-
-
-var appModule = makeModule(app, {
-    global: 'Em.Eu',
-    packageName: 'ember-utils',
-    main: 'main',
-    shim: {
-      'ember': 'Ember'
-    }
-});
-
-module.exports = new mergeTrees([appModule]);
+module.exports = app.toTree();
