@@ -1,5 +1,8 @@
 import Em from 'ember';
 
+/*
+Maintain a list of configuration within an Ember Namespace,
+*/
 export default Em.Namespace.extend({
   _configs: Em.Object.create(),
   getConfig: function(name) {
