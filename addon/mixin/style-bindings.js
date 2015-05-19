@@ -59,7 +59,7 @@ export default Em.Mixin.create({
    * @method applyBindings
    * @private
    */
-  applyBindings: (function() {
+  applyBindings: Em.on('init', function() {
     var lookup, properties, styleBindingsstyleBindings, styleComputed, styles;
     if (!(styleBindingsstyleBindings = this.styleBindings)) {
       return;
@@ -90,5 +90,5 @@ export default Em.Mixin.create({
     });
     styleComputed.property.apply(styleComputed, properties);
     return Em.defineProperty(this, "style", styleComputed);
-  }).on('init')
+  })
 });

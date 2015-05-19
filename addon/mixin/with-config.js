@@ -1,7 +1,7 @@
 import Em from 'ember';
 
 export default Em.Mixin.create({
-  configName: (function() {
+  configName: Em.computed(function() {
     var config;
     config = this.nearestWithProperty('configName');
     if (config) {
@@ -9,8 +9,8 @@ export default Em.Mixin.create({
     } else {
       return 'default';
     }
-  }).property(),
-  config: (function() {
+  }),
+  config: Em.computed('configName', function() {
     return Em.IdxConfig.getConfig(this.get('configName'));
-  }).property('configName')
+  })
 });
