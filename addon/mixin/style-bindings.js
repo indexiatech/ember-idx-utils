@@ -72,7 +72,7 @@ export default Em.Mixin.create({
       style = propArr[1];
       return lookup[style || property] = property;
     });
-    styles = Em.keys(lookup);
+    styles = Object.keys(lookup);
     properties = styles.map(function(style) {
       return lookup[style];
     });
