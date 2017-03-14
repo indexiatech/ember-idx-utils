@@ -13,8 +13,7 @@ export default Em.Namespace.extend({
   addConfig: function(name, config) {
     var defaultConfig, newConfig;
     defaultConfig = this._configs.get('default');
-    newConfig = Em.Object.create(config);
-    newConfig = Em.$.extend(true, newConfig, defaultConfig);
+    newConfig = Em.Object.create(defaultConfig, config);
     return this._configs.set(name, newConfig);
   }
 });
