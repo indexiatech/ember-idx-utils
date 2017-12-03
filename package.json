@@ -23,6 +23,9 @@
   },
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "ember-cli-babel": "^6.7.1"
+  },
   "devDependencies": {
     "broccoli-asset-rev": "^1.0.0",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
